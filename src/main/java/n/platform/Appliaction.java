@@ -1,5 +1,9 @@
 package n.platform;
 
+import n.platform.core.proxy.ProxyClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @Author: Near
  * @Date: 2018/9/4 16:28
@@ -7,7 +11,8 @@ package n.platform;
  */
 
 public class Appliaction {
+    private static final Logger log = LoggerFactory.getLogger(Appliaction.class);
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        ProxyClient.getInstance().start();
     }
 }
