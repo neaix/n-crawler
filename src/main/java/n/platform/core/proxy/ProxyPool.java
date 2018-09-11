@@ -6,9 +6,11 @@ import n.platform.core.proxy.parser.XiciProxyParser;
 import n.platform.domain.Proxy;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
@@ -20,7 +22,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ProxyPool {
 
     public static final ReentrantReadWriteLock  lock = new ReentrantReadWriteLock();
-    public static final Set<Proxy> proxys = new HashSet<Proxy>(100);
+    public static final List<Proxy> proxys = new CopyOnWriteArrayList<>();
     public static final Map<String,Class> PROXY_SOURCE_URL = new HashMap<String, Class>(10);
     static {
             for(int i = 1; i <= 10; i++){

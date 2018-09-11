@@ -3,6 +3,8 @@ package n.platform.domain;
 import com.sun.istack.internal.NotNull;
 import lombok.*;
 
+import java.io.Serializable;
+
 
 /**
  * @Author: Near
@@ -11,7 +13,7 @@ import lombok.*;
  */
 @ToString(of = {"ip","port"})
 @EqualsAndHashCode(of = {"ip","port"})
-public class Proxy {
+public class Proxy implements Serializable {
 
     @Getter
     @Setter
@@ -26,22 +28,22 @@ public class Proxy {
     //最后一次请求成功耗时
     @Getter
     @Setter
-    private long lastSuccessfulTime;
+    private transient long lastSuccessfulTime;
 
     //请求成功总耗时
     @Getter
     @Setter
-    private long successfulTotalTime;
+    private transient long successfulTotalTime;
 
     //成功次数
     @Getter
     @Setter
-    private int successfulTimes;
+    private transient int successfulTimes;
 
     //是否可用
     @Getter
     @Setter
-    private boolean available;
+    private transient boolean available;
 
     public Proxy(String ip, int port) {
         this.ip = ip;

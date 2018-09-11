@@ -1,17 +1,17 @@
-package n.platform.core.proxy;
+package n.platform.core.proxy.task;
 import com.sun.istack.internal.NotNull;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import n.platform.core.Parser;
+import n.platform.core.proxy.ProxyParserFactory;
+import n.platform.core.proxy.ProxyPool;
 import n.platform.domain.Page;
 import n.platform.domain.Proxy;
 import n.platform.utils.HttpClientUtil;
 import org.apache.http.HttpStatus;
 import org.jsoup.helper.StringUtil;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.*;
 
 /**
  * @Author: Near

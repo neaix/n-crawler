@@ -28,7 +28,7 @@ public class PlatformConstants {
     /**
      * 加载代理数量
      */
-    public static final int PROXY_MAX_COUNT = 1000;
+    public static final int PROXY_MAX_COUNT = 200;
 
     /**
      * 使用代理
@@ -48,4 +48,16 @@ public class PlatformConstants {
     public static final String PROXY_XICI = "xici";
 
     public static final String PROXY_IP66 = "ip66";
+
+    /**链家二手房地址*/
+    public static final String LIANJIE_BASE_URL = "https://%s.lianjia.com/ershoufang/pg%d";
+
+    /**字符串拼接符号 -*/
+    public static final String SPLIT_SYMBOL = "-";
+
+    /**链家每页显示条目数*/
+    public static final int LIANJIE_PAGE_SIZE = 30;
+
+    public static final String ENCODE_UTF8 = "utf-8";
+
 }

@@ -150,6 +150,7 @@ public class HttpClientUtil {
 		CloseableHttpResponse response = null;
 		response = getResponse(request);
 		String content = EntityUtils.toString(response.getEntity(),"utf-8");
+		request.releaseConnection();
 		return new Page(url,content,response.getStatusLine().getStatusCode());
 	}
 	/**
@@ -160,10 +161,16 @@ public class HttpClientUtil {
 			, String encoding) throws IOException {
 		CloseableHttpResponse response = null;
 		response = getResponse(request);
-		log.info("status---" + response.getStatusLine().getStatusCode());
 		String content = EntityUtils.toString(response.getEntity(),encoding);
 		request.releaseConnection();
 		return content;
+	}
+
+	public static Page getPage(HttpRequestBase requestBase) throws IOException {
+		CloseableHttpResponse response = null;
+		response = getResponse(requestBase);
+		String content = EntityUtils.toString(response.getEntity(),"utf-8");
+		return new Page(requestBase.getURI().toString(),content,response.getStatusLine().getStatusCode());
 	}
 	public static CloseableHttpResponse getResponse(HttpRequestBase request) throws IOException {
 		if (request.getConfig() == null){
@@ -182,6 +189,12 @@ public class HttpClientUtil {
 	public static CloseableHttpResponse getResponse(String url) throws IOException {
 		HttpGet request = new HttpGet(url);
 		return getResponse(request);
+	}
+	public static RequestConfig.Builder getRequestConfigBuilder(){
+		return RequestConfig.custom().setSocketTimeout(PlatformConstants.HTTP_TIME_OUT).
+				setConnectTimeout(PlatformConstants.HTTP_TIME_OUT).
+				setConnectionRequestTimeout(PlatformConstants.HTTP_TIME_OUT).
+				setCookieSpec(CookieSpecs.STANDARD);
 	}
 	/**
 	 * 序列化对象
