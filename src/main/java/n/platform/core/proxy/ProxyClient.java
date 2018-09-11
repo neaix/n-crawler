@@ -1,6 +1,10 @@
 package n.platform.core.proxy;
 
 import lombok.extern.slf4j.Slf4j;
+import n.platform.constants.PlatformConstants;
+import n.platform.core.monitor.MonitorThreadPoolTask;
+import n.platform.core.proxy.task.ProxyTask;
+
 import java.util.concurrent.*;
 
 /**
@@ -12,7 +16,9 @@ import java.util.concurrent.*;
 @Slf4j
 public class ProxyClient {
 
-    private ProxyClient(){}
+    private ProxyClient(){
+        initThreadPool();
+    }
 
     private static ProxyClient instance;
 
@@ -25,16 +31,24 @@ public class ProxyClient {
         return instance;
     }
 
-    private ExecutorService executorService;
+
+    private  ThreadPoolExecutor executor;
+
+    private  void initThreadPool(){
+        executor = new ThreadPoolExecutor(PlatformConstants.DEFAULT_THREAD_POOL_SIZE,
+                                          PlatformConstants.DEFAULT_THREAD_POOL_SIZE,
+                                         0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue(20),
+                new ThreadPoolExecutor.CallerRunsPolicy());
+        //监控开始
+        new Thread(new MonitorThreadPoolTask("proxy-thread-pool",executor)).start();
+    }
+
     /**
      * 开始爬取代理
      */
     public void start(){
-        executorService =  Executors.newFixedThreadPool(40);
         for(String url : ProxyPool.PROXY_SOURCE_URL.keySet()){
-            executorService.execute(new ProxyTask(url));
+            executor.execute(new ProxyTask(url));
         }
-        executorService.shutdown();
-
     }
 }

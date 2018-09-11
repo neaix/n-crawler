@@ -1,17 +1,17 @@
-package n.platform.core.proxy;
+package n.platform.core.proxy.task;
 import com.sun.istack.internal.NotNull;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import n.platform.core.Parser;
+import n.platform.core.proxy.ProxyParserFactory;
+import n.platform.core.proxy.ProxyPool;
 import n.platform.domain.Page;
 import n.platform.domain.Proxy;
 import n.platform.utils.HttpClientUtil;
 import org.apache.http.HttpStatus;
 import org.jsoup.helper.StringUtil;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.*;
 
 /**
  * @Author: Near
@@ -36,6 +36,7 @@ public class ProxyTask implements Runnable {
 
     public void run() {
         try {
+            //TODO 爬取代理目前直接用本机IP，后续考虑序列化代理。使用代理爬代理
             Page page = HttpClientUtil.getPage(url);
             if(page.getStatusCode() == HttpStatus.SC_OK
                     && !StringUtil.isBlank(page.getHtml())){

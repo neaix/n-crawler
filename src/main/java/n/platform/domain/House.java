@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @Author: Near
@@ -48,10 +47,10 @@ public class House {
 
     @Getter
     @Setter
-    private Date listingTime;
+    private String listingTime;
 
     @Getter
     @Setter
-    private List<String> imgUrls;
+    private String imgUrl;
 
 }
