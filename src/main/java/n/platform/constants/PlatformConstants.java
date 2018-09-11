@@ -59,5 +59,7 @@ public class PlatformConstants {
     public static final int LIANJIE_PAGE_SIZE = 30;
 
     public static final String ENCODE_UTF8 = "utf-8";
+    /**默认线程池大小*/
+    public static final int DEFAULT_THREAD_POOL_SIZE = 40;
 
 }

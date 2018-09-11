@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 /**
@@ -26,10 +27,12 @@ public class Config {
 
     private static void init() {
          properties = new Properties();
+        ClassLoader classLoader = Config.class.getClassLoader();
+        InputStream in = classLoader.getResourceAsStream("application.properties");
         try {
-            properties.load(new FileInputStream("application.properties"));
+            properties.load(in);
         } catch (IOException e) {
-            log.error("load appliaction.properties failure.",e);
+            log.error("load propities failure,msg:{}",e.getMessage());
         }
 
     }

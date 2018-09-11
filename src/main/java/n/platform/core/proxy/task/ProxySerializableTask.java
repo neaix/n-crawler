@@ -6,7 +6,7 @@ package n.platform.core.proxy.task;
  * @Description: 代理序列化
  */
 
-public class ProxySerializable implements Runnable {
+public class ProxySerializableTask implements Runnable {
     @Override
     public void run() {
 
