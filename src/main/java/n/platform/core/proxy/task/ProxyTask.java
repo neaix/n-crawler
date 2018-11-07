@@ -36,7 +36,6 @@ public class ProxyTask implements Runnable {
 
     public void run() {
         try {
-            //TODO 爬取代理目前直接用本机IP，后续考虑序列化代理。使用代理爬代理
             Page page = HttpClientUtil.getPage(url);
             if(page.getStatusCode() == HttpStatus.SC_OK
                     && !StringUtil.isBlank(page.getHtml())){

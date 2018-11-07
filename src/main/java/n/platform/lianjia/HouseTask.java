@@ -43,12 +43,13 @@ public class HouseTask implements Runnable {
     @Override
     public void run() {
         Page page = null;
-        if(Config.USE_PROXY){
-            HttpGet httpGet = new HttpGet();
+        if(PlatformConstants.PROXY_FLAG){
+            HttpGet httpGet = new HttpGet(url);
             Proxy currentProxy = ProxyPool.proxys.get(NumberUtils.random(ProxyPool.proxys.size()));
             if(null == currentProxy){
                 try {
-                    TimeUnit.SECONDS.sleep(10);
+                    log.info("当前无代理数据，等待代理线程运行。");
+                    TimeUnit.SECONDS.sleep(5);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }

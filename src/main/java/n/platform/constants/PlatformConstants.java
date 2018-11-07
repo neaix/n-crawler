@@ -62,4 +62,7 @@ public class PlatformConstants {
     /**默认线程池大小*/
     public static final int DEFAULT_THREAD_POOL_SIZE = 40;
 
+    /**是否使用代理*/
+    public static final boolean  PROXY_FLAG = Config.getInt("platform.user_proxy",USE_PROXY)  == USE_PROXY;
+
 }

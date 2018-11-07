@@ -1,5 +1,6 @@
 package n.platform.core.proxy.parser;
 
+import com.sun.istack.internal.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import n.platform.core.Parser;
 import n.platform.domain.Page;
@@ -21,7 +22,7 @@ import java.util.List;
 @Slf4j
 public class Ip66ProxyParser implements Parser<Proxy> {
 
-    public List<Proxy> parser(Page page) {
+    public List<Proxy> parser(@NotNull Page page) {
         log.info("load html page,url:{}",page.getUrl());
         Document doc = Jsoup.parse(page.getHtml());
         Elements elements = doc.getElementsByTag("table");
@@ -35,7 +36,6 @@ public class Ip66ProxyParser implements Parser<Proxy> {
                    Elements tds = item.getElementsByTag("td");
                    Proxy proxy = new Proxy(tds.eq(0).html(),Integer.valueOf(tds.eq(1).html()));
                    proxies.add(proxy);
-
               }
             }
         }

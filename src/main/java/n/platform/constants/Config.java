@@ -1,5 +1,6 @@
 package n.platform.constants;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,14 +16,11 @@ import java.util.Properties;
  * @Description: ≈‰÷√¿‡
  */
 
+@Slf4j
 public class Config {
-
-    private static final Logger log = LoggerFactory.getLogger(Config.class);
-    public static final boolean USE_PROXY;
     private static Properties properties;
     static {
         init();
-        USE_PROXY = getInt("platform.use_proxy",PlatformConstants.NON_USE_PROXY) == PlatformConstants.USE_PROXY;
     }
 
     private static void init() {
@@ -37,9 +35,13 @@ public class Config {
 
     }
 
-    private static int getInt(String key,int defaultVal){
+    public static int getInt(String key,int defaultVal){
         String val = properties.getProperty(key,String.valueOf(defaultVal));
         return Integer.valueOf(val);
+    }
+
+    public static String getString(String key){
+       return properties.getProperty(key);
     }
 
 }

@@ -1,5 +1,6 @@
 package n.platform.core.proxy;
 
+import com.sun.istack.internal.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import n.platform.core.Parser;
 
@@ -23,7 +24,7 @@ public class ProxyParserFactory {
      * @return
      * @see Parser
      */
-    public static Parser getParser(Class clz){
+    public static Parser getParser(@NotNull Class clz){
         String name = clz.getSimpleName();
         if(map.containsKey(name)){
             return map.get(name);

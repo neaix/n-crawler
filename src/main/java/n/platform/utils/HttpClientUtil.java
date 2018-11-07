@@ -305,32 +305,8 @@ public class HttpClientUtil {
 	public static void setCookieStore(CookieStore cookieStore) {
 		HttpClientUtil.cookieStore = cookieStore;
 	}
-	/**
-	 * 有bug 慎用
-	 * unicode转化String
-	 * @return
-     */
-	public static String decodeUnicode(String dataStr) {
-		int start = 0;
-		int end = 0;
-		final StringBuffer buffer = new StringBuffer();
-		while (start > -1) {
-			start = dataStr.indexOf("\\u", start - (6 - 1));
-			if (start == -1){
-				break;
-			}
-			start = start + 2;
-			end = start + 4;
-			String tempStr = dataStr.substring(start, end);
-			String charStr = "";
-			charStr = dataStr.substring(start, end);
-			char letter = (char) Integer.parseInt(charStr, 16); // 16进制parse整形字符串。
-			dataStr = dataStr.replace("\\u" + tempStr, letter + "");
-			start = end;
-		}
-		log.debug(dataStr);
-		return dataStr;
-	}
+
+
 	/**
 	 * 设置request请求参数
 	 * @param request
@@ -349,6 +325,5 @@ public class HttpClientUtil {
 		}
 		request.setEntity(entity);
 	}
-
 
 }

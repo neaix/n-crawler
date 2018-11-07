@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: Near
  * @Date: 2018/9/11 15:19
- * @Description:
+ * @Description: 线程池监控任务
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class MonitorThreadPoolTask implements Runnable{
     @Setter
     private ThreadPoolExecutor executor;
 
-    public MonitorThreadPoolTask(@NotNull String name, @NotNull  ThreadPoolExecutor executor) {
+    public MonitorThreadPoolTask(@NotNull String name, @NotNull ThreadPoolExecutor executor) {
         this.name = name;
         this.executor = executor;
     }
