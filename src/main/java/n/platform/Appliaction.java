@@ -13,8 +13,8 @@ import n.platform.lianjia.LianjiaClient;
 @Slf4j
 public class Appliaction {
     public static void main(String[] args) {
-        ProxyClient.getInstance().start();
-        LianjiaClient.getInstance().start("fs");
+      //  ProxyClient.getInstance().start();
+        LianjiaClient.getInstance().start("");
 
     }
 }

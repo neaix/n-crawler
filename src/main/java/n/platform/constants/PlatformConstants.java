@@ -65,4 +65,9 @@ public class PlatformConstants {
     /**是否使用代理*/
     public static final boolean  PROXY_FLAG = Config.getInt("platform.user_proxy",USE_PROXY)  == USE_PROXY;
 
+    /**excel2003 xls格式*/
+    public static final String EXCEL_TYPE_2003_SUFFIX = ".xls";
+    /**Excel 2007 xlsx格式*/
+    public static final String EXCEL_TYPE_2007_SUFFIX = ".xlsx";
+
 }

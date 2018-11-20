@@ -11,8 +11,8 @@
         <developer>
             <id>1</id>
             <name>Near</name>
-            <email>ram.overflow@hotmail.com</email>
-            <url>https://neaix.github.io</url>
+            <email>neaix@hotmail.com</email>
+            <url>https://neaix.life</url>
         </developer>
     </developers>
     <dependencies>
@@ -42,6 +42,24 @@
             <artifactId>jsoup</artifactId>
             <version>1.11.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>
     </dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
 </project>

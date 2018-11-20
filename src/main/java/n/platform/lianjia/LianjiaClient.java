@@ -21,6 +21,7 @@ public class LianjiaClient {
         initThreadPool();
     }
 
+
     private static LianjiaClient instance;
 
     public static LianjiaClient getInstance(){
@@ -52,12 +53,13 @@ public class LianjiaClient {
             int pageCount = NumberUtils.div(count,PlatformConstants.LIANJIE_PAGE_SIZE);
             log.info("数据条数:{},页数:{}",count,pageCount);
             for(int i = 1; i<= pageCount; i++){
-                executor.execute(new HouseTask(String.format(url,i)));
+               executor.execute(new HouseTask(String.format(url,i)));
             }
+
+
 
         } catch (IOException e) {
             log.error("processing failure,error msg:{}",e.getMessage());
         }
     }
-
 }

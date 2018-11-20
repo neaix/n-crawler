@@ -7,8 +7,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-
 /**
  * @Author: Near
  * @Date: 2018/9/11 15:19
@@ -24,9 +22,10 @@ public class MonitorThreadPoolTask implements Runnable{
     @Setter
     private String name;
 
-    @Getter
     @Setter
     private ThreadPoolExecutor executor;
+
+
 
     public MonitorThreadPoolTask(@NotNull String name, @NotNull ThreadPoolExecutor executor) {
         this.name = name;
@@ -37,7 +36,7 @@ public class MonitorThreadPoolTask implements Runnable{
     @Override
     public void run() {
         while(!isStop){
-            log.debug("{}[monitor] [{}/{}] Active: {}, Completed: {}, queueSize: {}," +
+            log.info("{}[monitor] [{}/{}] Active: {}, Completed: {}, queueSize: {}," +
                                     " Task: {}, isShutdown: {}, isTerminated: {}",
                             name,
                             this.executor.getPoolSize(),
@@ -48,12 +47,8 @@ public class MonitorThreadPoolTask implements Runnable{
                             this.executor.getTaskCount(),
                             this.executor.isShutdown(),
                             this.executor.isTerminated());
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-               log.error(e.getMessage());
-               Thread.currentThread().interrupt();
-            }
+
+
         }
     }
 

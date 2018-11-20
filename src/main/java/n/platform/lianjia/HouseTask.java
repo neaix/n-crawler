@@ -73,6 +73,7 @@ public class HouseTask implements Runnable {
         }
         if(null != page){
            List<House> list =  parser.parser(page);
+           ProxyPool.houseList.addAll(list);
            for(House house : list){
                //TODO ³Ö¾Ã»¯£¬db or execl
                log.info(house.toString());
